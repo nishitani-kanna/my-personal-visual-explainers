@@ -4,7 +4,7 @@
 
 | キャラ | 名前 | 役割 | 性格 |
 |--------|------|------|------|
-| ベージュうさぎ | **うさ** | IT知識を教えてくれる先輩 | 物知りで温かく責任感が強い中堅エンジニア。自分もAI・ITを日々勉強中。「一緒に頑張ろう」タイプ |
+| ベージュうさぎ | **うさ** | IT知識を教えてくれる先輩 | SESで医療・金融など複数の現場を経験した4年目エンジニア。今は新人のメンターも担当している。自分もAI・ITを日々勉強中で、「一緒に頑張ろう！」タイプ。親しみやすくてフレンドリーだけど、大事なことはきちんと伝える |
 | 白サモエド | **さも** | 新人の代弁者 | ニコニコ穏やか。知識はまだ浅くうっかりしがち。でも素直に学んでいく愛すべきポンコツ |
 | グレー白ラグドール | **ラグ** | セキュリティ担当 | 口数は少ないが端的に大切なことを伝える。クールに見えるが実はよく周りを見ていて、みんなに信頼されている |
 | カラフルオウム | **わらび** | ベテランエンジニア | 出番は少ないが、過去の経験・歴史的な背景が必要な場面で登場。落ち着いた知恵袋 |
@@ -35,8 +35,7 @@
 
 | 表情 | ファイル名 | 使用シーン |
 |------|-----------|----------|
-| 無表情 | `ラグ-無表情.png` | セキュリティに関する落ち着いたコメント |
-| 注意 | `ラグ-注意.png` | 重要なセキュリティ警告・「これは必ず確認して」 |
+| 標準 | `ラグ-注意.png` | セキュリティに関するコメント・警告全般 |
 
 ### わらび（ベテラン）
 
@@ -46,18 +45,25 @@
 
 ---
 
-## 画像パス
+## 画像パス・サイズ
 
 HTML内での参照パス（デプロイ時のパスに合わせること）:
 
 ```html
-<img src="./images/うさ-標準.png" alt="うさ" class="w-20 h-20 object-contain flex-shrink-0">
+<img src="./images/うさ-標準.png" alt="うさ" class="char-img">
 ```
+
+**重要**: 必ず `class="char-img"` を使うこと（CSSで `width:80px; height:80px; object-fit:contain; flex-shrink:0` が定義済み）。
+`w-20 h-20` などTailwindクラスは使わないこと（画像によって見た目のサイズが変わる原因になる）。
 
 スキル内での保存場所:
 ```
 .claude/skills/diagram-senpai/character-images/
 ```
+
+画像仕様（参照用）:
+- サイズ: 512×512 px
+- フォーマット: PNG（RGBA・透過背景）
 
 デプロイ時にコピーが必要。SKILL.md の Phase 8 参照。
 
@@ -70,7 +76,7 @@ HTML内での参照パス（デプロイ時のパスに合わせること）:
 ```html
 <!-- さも：疑問を投げかける -->
 <div class="flex items-start gap-4 mb-5">
-  <img src="./images/さも-標準.png" alt="さも" class="w-20 h-20 object-contain flex-shrink-0">
+  <img src="./images/さも-ニコニコ.png" alt="さも" class="char-img">
   <div class="bg-amber-50 border border-amber-200 rounded-2xl rounded-tl-none px-5 py-4 flex-1">
     <p class="text-sm font-bold text-amber-700 mb-1">さも</p>
     <p class="text-gray-700">【疑問・読者が思いそうな「え、それってどういうこと？」】</p>
@@ -79,10 +85,10 @@ HTML内での参照パス（デプロイ時のパスに合わせること）:
 
 <!-- うさ：説明する -->
 <div class="flex items-start gap-4 mb-5 flex-row-reverse">
-  <img src="./images/うさ-アドバイス.png" alt="うさ" class="w-20 h-20 object-contain flex-shrink-0">
+  <img src="./images/うさ-説明中.png" alt="うさ" class="char-img">
   <div class="bg-blue-50 border border-blue-200 rounded-2xl rounded-tr-none px-5 py-4 flex-1">
     <p class="text-sm font-bold text-blue-700 mb-1">うさ</p>
-    <p class="text-gray-700">【説明。たとえ話を使って平易に。「〇〇みたいなイメージです」】</p>
+    <p class="text-gray-700">【説明。たとえ話を使って平易に。「〇〇みたいなイメージだよ！」「要は〜ってこと」】</p>
   </div>
 </div>
 ```
@@ -92,7 +98,7 @@ HTML内での参照パス（デプロイ時のパスに合わせること）:
 ```html
 <!-- さも：うっかりNG行動 -->
 <div class="flex items-start gap-4 mb-5">
-  <img src="./images/さも-やらかした.png" alt="さも" class="w-20 h-20 object-contain flex-shrink-0">
+  <img src="./images/さも-やらかした.png" alt="さも" class="char-img">
   <div class="bg-amber-50 border border-amber-200 rounded-2xl rounded-tl-none px-5 py-4 flex-1">
     <p class="text-sm font-bold text-amber-700 mb-1">さも</p>
     <p class="text-gray-700">【「こういうことやっちゃいそう…」なNG行動の描写。自虐的に】</p>
@@ -101,7 +107,7 @@ HTML内での参照パス（デプロイ時のパスに合わせること）:
 
 <!-- ラグ：セキュリティ的に注意 -->
 <div class="flex items-start gap-4 mb-5 flex-row-reverse">
-  <img src="./images/ラグ-警告.png" alt="ラグ" class="w-20 h-20 object-contain flex-shrink-0">
+  <img src="./images/ラグ-注意.png" alt="ラグ" class="char-img">
   <div class="bg-slate-50 border border-slate-300 rounded-2xl rounded-tr-none px-5 py-4 flex-1">
     <p class="text-sm font-bold text-slate-600 mb-1">ラグ</p>
     <p class="text-gray-700">【短く、端的に。「それ、〇〇のリスクがある。△△に変えるだけで防げる」】</p>
@@ -114,16 +120,16 @@ HTML内での参照パス（デプロイ時のパスに合わせること）:
 ```html
 <!-- うさ：「これだけ覚えて」 -->
 <div class="flex items-start gap-4 mb-5 flex-row-reverse">
-  <img src="./images/うさ-励まし.png" alt="うさ" class="w-20 h-20 object-contain flex-shrink-0">
+  <img src="./images/うさ-嬉しい.png" alt="うさ" class="char-img">
   <div class="bg-blue-50 border border-blue-200 rounded-2xl rounded-tr-none px-5 py-4 flex-1">
     <p class="text-sm font-bold text-blue-700 mb-1">うさ</p>
-    <p class="text-gray-700">【「難しいルールは全部覚えなくていい。この3つだけ持ち帰って！」系の締め】</p>
+    <p class="text-gray-700">【「難しいルールは全部覚えなくていいよ！この3つだけ持ち帰って！」系の締め】</p>
   </div>
 </div>
 
 <!-- さも：理解した！ -->
 <div class="flex items-start gap-4 mb-5">
-  <img src="./images/さも-わかった.png" alt="さも" class="w-20 h-20 object-contain flex-shrink-0">
+  <img src="./images/さも-わかった.png" alt="さも" class="char-img">
   <div class="bg-amber-50 border border-amber-200 rounded-2xl rounded-tl-none px-5 py-4 flex-1">
     <p class="text-sm font-bold text-amber-700 mb-1">さも</p>
     <p class="text-gray-700">【「なるほど！それなら覚えられそうです！」系の前向きな反応】</p>
@@ -136,7 +142,7 @@ HTML内での参照パス（デプロイ時のパスに合わせること）:
 ```html
 <!-- わらび：歴史・経験談 -->
 <div class="flex items-start gap-4 mb-5">
-  <img src="./images/わらび-標準.png" alt="わらび" class="w-20 h-20 object-contain flex-shrink-0">
+  <img src="./images/わらび-標準.png" alt="わらび" class="char-img">
   <div class="bg-green-50 border border-green-200 rounded-2xl rounded-tl-none px-5 py-4 flex-1">
     <p class="text-sm font-bold text-green-700 mb-1">わらび</p>
     <p class="text-gray-700">【「昔はこういう事故があってね…」「現場では実際こんなことが起きた」的な経験談】</p>
@@ -150,9 +156,11 @@ HTML内での参照パス（デプロイ時のパスに合わせること）:
 
 ### うさ
 - 一人称なし（使わなくていい）
-- 丁寧語ベース。でも硬すぎない
-- 「〜みたいなイメージです」「〜から始めましょう」「一緒に確認しましょう」
-- 自分も勉強中であることが滲み出る表現を使う：「私もよく確認するんですが…」「最近これ改めて気をつけてて…」
+- です・ます基調だけど、「〜だよ」「〜なんだよね」「〜してみて！」「〜な感じ！」を自然に混ぜる
+- 「わかるわかる、最初そこ迷うよね」「現場でもそれやらかしてる人、意外と多いんだ〜」
+- 怖がらせず、「ここだけ押さえてもらえれば大丈夫！」という安心感を与える
+- 自分も勉強中であることが滲み出る：「私もたまに確認するんだけどさ…」「入社したてのころ、実はよくやってたな〜」
+- 現場経験から来る具体的な一言：「この手のミス、障害対応の焦りでよくあるんだよね」
 
 ### さも
 - 一人称：「ぼく」または使わない
@@ -175,6 +183,6 @@ HTML内での参照パス（デプロイ時のパスに合わせること）:
 
 1. **さも は左、うさ・ラグ・わらび は右** に配置（`flex-row-reverse` を使う）
 2. **吹き出しは角丸**。左側キャラは `rounded-tl-none`、右側は `rounded-tr-none`
-3. **画像サイズ**: `w-20 h-20`（80px）を基本とする
+3. **画像サイズ**: 必ず `class="char-img"` を使用（CSSで80px×80px固定）
 4. **対話は連続2〜3往復まで**。それ以上は図解のほうが伝わる
 5. **わらびはセクション横断で最大2回まで**
